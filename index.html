@@ -1,0 +1,2412 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>jQuery Mobile: Customize Listview</title>
+			<link rel="stylesheet" type="text/css" href="css/jquery.mobile-min.css">
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mobile-min.js"></script>
+	 <script src="assets/flex-slider/jquery.flexslider-min.js"></script>
+       <script type="text/javascript" src="js/parse-1.3.0.min.js"></script>
+
+<!--  <script src="js/main.js"></script>
+-->	
+    <link href="css/jqm.css" rel="stylesheet" type="text/css">
+    
+    <link href="css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link href="assets/flex-slider/flexslider.css" rel="stylesheet" type="text/css">
+   <!-- <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="includes/overrides.css" rel="stylesheet" type="text/css">
+    <link href="themes/my_company.min.css" rel="stylesheet" type="text/css">-->
+</head>
+
+<body>
+<style type="text/css">
+body .ui-header {
+  font-family: "Roboto_slab_regular";}
+  body .ui-footer {
+  font-family: "Roboto_slab_thin";}
+  .button {
+  font-family: "Roboto_slab_thin";}
+  body .ui-listview li h1 {
+  font-family: "Roboto_slab_regular";}
+  body .ui-listview li p {
+  font-family: "Roboto_slab_thin"; margin-left:2.5em;}
+  body .ui-listview { word-wrap:break-word;}
+  </style>
+<div data-role="page" id="home" data-theme="a">
+			<div data-role="header">
+				<h1>Homepage</h1>
+			</div>
+                        <div data-role="content">
+					 <script type="text/javascript" src="js/jssor.core.js"></script>
+    <script type="text/javascript" src="js/jssor.utils.js"></script>
+    <script type="text/javascript" src="js/jssor.slider.js"></script>
+    <script>
+         jssor_slider2_starter = function (containerId) {
+            //Reference http://www.jssor.com/development/slider-with-slideshow-no-jquery.html
+            //Reference http://www.jssor.com/development/tool-slideshow-transition-viewer.html
+
+            var _SlideshowTransitions = [
+            //Swing Outside in Stairs
+            {$Duration: 1200, $Delay: 20, $Cols: 8, $Rows: 4, $Clip: 15, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $FlyDirection: 9, $Formation: $JssorSlideshowFormations$.$FormationStraightStairs, $Assembly: 260, $Easing: { $Left: $JssorEasing$.$EaseInWave, $Top: $JssorEasing$.$EaseInWave, $Clip: $JssorEasing$.$EaseOutQuad }, $ScaleHorizontal: 0.2, $ScaleVertical: 0.1, $Outside: true, $Round: { $Left: 1.3, $Top: 2.5} }
+
+            //Dodge Dance Outside out Stairs
+            , { $Duration: 1500, $Delay: 20, $Cols: 8, $Rows: 4, $Clip: 15, $During: { $Left: [0.1, 0.9], $Top: [0.1, 0.9] }, $SlideOut: true, $FlyDirection: 9, $Formation: $JssorSlideshowFormations$.$FormationStraightStairs, $Assembly: 260, $Easing: { $Left: $JssorEasing$.$EaseInJump, $Top: $JssorEasing$.$EaseInJump, $Clip: $JssorEasing$.$EaseOutQuad }, $ScaleHorizontal: 0.3, $ScaleVertical: 0.3, $Outside: true, $Round: { $Left: 0.8, $Top: 2.5} }
+
+            //Dodge Pet Outside in Stairs
+            , { $Duration: 1500, $Delay: 20, $Cols: 8, $Rows: 4, $Clip: 15, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $FlyDirection: 9, $Formation: $JssorSlideshowFormations$.$FormationStraightStairs, $Assembly: 260, $Easing: { $Left: $JssorEasing$.$EaseInWave, $Top: $JssorEasing$.$EaseInWave, $Clip: $JssorEasing$.$EaseOutQuad }, $ScaleHorizontal: 0.2, $ScaleVertical: 0.1, $Outside: true, $Round: { $Left: 0.8, $Top: 2.5} }
+
+            //Dodge Dance Outside in Random
+            , { $Duration: 1500, $Delay: 20, $Cols: 8, $Rows: 4, $Clip: 15, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $FlyDirection: 9, $Easing: { $Left: $JssorEasing$.$EaseInJump, $Top: $JssorEasing$.$EaseInJump, $Clip: $JssorEasing$.$EaseOutQuad }, $ScaleHorizontal: 0.3, $ScaleVertical: 0.3, $Outside: true, $Round: { $Left: 0.8, $Top: 2.5} }
+
+            //Flutter out Wind
+            , { $Duration: 1800, $Delay: 30, $Cols: 10, $Rows: 5, $Clip: 15, $During: { $Left: [0.3, 0.7], $Top: [0.3, 0.7] }, $SlideOut: true, $FlyDirection: 5, $Reverse: true, $Formation: $JssorSlideshowFormations$.$FormationStraightStairs, $Assembly: 2050, $Easing: { $Left: $JssorEasing$.$EaseInOutSine, $Top: $JssorEasing$.$EaseOutWave, $Clip: $JssorEasing$.$EaseInOutQuad }, $ScaleHorizontal: 1, $ScaleVertical: 0.2, $Outside: true, $Round: { $Top: 1.3} }
+
+            //Collapse Stairs
+            , { $Duration: 1200, $Delay: 30, $Cols: 8, $Rows: 4, $Clip: 15, $SlideOut: true, $Formation: $JssorSlideshowFormations$.$FormationStraightStairs, $Assembly: 2049, $Easing: $JssorEasing$.$EaseOutQuad }
+
+            //Collapse Random
+            , { $Duration: 1000, $Delay: 80, $Cols: 8, $Rows: 4, $Clip: 15, $SlideOut: true, $Easing: $JssorEasing$.$EaseOutQuad }
+
+            //Vertical Chess Stripe
+            , { $Duration: 1000, $Cols: 12, $FlyDirection: 8, $Formation: $JssorSlideshowFormations$.$FormationStraight, $ChessMode: { $Column: 12} }
+
+            //Extrude out Stripe
+            , { $Duration: 1000, $Delay: 40, $Cols: 12, $SlideOut: true, $FlyDirection: 2, $Formation: $JssorSlideshowFormations$.$FormationStraight, $Assembly: 260, $Easing: { $Left: $JssorEasing$.$EaseInOutExpo, $Opacity: $JssorEasing$.$EaseInOutQuad }, $ScaleHorizontal: 0.2, $Opacity: 2, $Outside: true, $Round: { $Top: 0.5} }
+
+            //Dominoes Stripe
+            , { $Duration: 2000, $Delay: 60, $Cols: 15, $SlideOut: true, $FlyDirection: 8, $Formation: $JssorSlideshowFormations$.$FormationStraight, $Easing: $JssorEasing$.$EaseOutJump, $Round: { $Top: 1.5} }
+            ];
+			
+			var _CaptionTransitions = [
+            //CLIP|LR
+            {$Duration: 900, $Clip: 3, $Easing: $JssorEasing$.$EaseInOutCubic },
+            //CLIP|TB
+            {$Duration: 900, $Clip: 12, $Easing: $JssorEasing$.$EaseInOutCubic },
+
+            //DDGDANCE|LB
+            {$Duration: 1800, $Zoom: 1, $FlyDirection: 9, $Easing: { $Left: $JssorEasing$.$EaseInJump, $Top: $JssorEasing$.$EaseInJump, $Zoom: $JssorEasing$.$EaseOutQuad }, $ScaleHorizontal: 0.3, $ScaleVertical: 0.3, $Opacity: 2, $During: { $Left: [0, 0.8], $Top: [0, 0.8] }, $Round: { $Left: 0.8, $Top: 2.5} },
+            //DDGDANCE|RB
+            {$Duration: 1800, $Zoom: 1, $FlyDirection: 10, $Easing: { $Left: $JssorEasing$.$EaseInJump, $Top: $JssorEasing$.$EaseInJump, $Zoom: $JssorEasing$.$EaseOutQuad }, $ScaleHorizontal: 0.3, $ScaleVertical: 0.3, $Opacity: 2, $During: { $Left: [0, 0.8], $Top: [0, 0.8] }, $Round: { $Left: 0.8, $Top: 2.5} },
+
+            //TORTUOUS|HL
+            {$Duration: 1500, $Zoom: 1, $FlyDirection: 1, $Easing: { $Left: $JssorEasing$.$EaseOutWave, $Zoom: $JssorEasing$.$EaseOutCubic }, $ScaleHorizontal: 0.2, $Opacity: 2, $During: { $Left: [0, 0.7] }, $Round: { $Left: 1.3} },
+            //TORTUOUS|VB
+            {$Duration: 1500, $Zoom: 1, $FlyDirection: 8, $Easing: { $Top: $JssorEasing$.$EaseOutWave, $Zoom: $JssorEasing$.$EaseOutCubic }, $ScaleVertical: 0.2, $Opacity: 2, $During: { $Top: [0, 0.7] }, $Round: { $Top: 1.3} },
+
+            //ZMF|10
+            {$Duration: 600, $Zoom: 11, $Easing: { $Zoom: $JssorEasing$.$EaseInExpo, $Opacity: $JssorEasing$.$EaseLinear }, $Opacity: 2 },
+
+            //ZML|R
+            {$Duration: 600, $Zoom: 11, $FlyDirection: 2, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.6, $Opacity: 2 },
+            //ZML|B
+            {$Duration: 600, $Zoom: 11, $FlyDirection: 8, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleVertical: 0.6, $Opacity: 2 },
+
+            //ZMS|B
+            {$Duration: 700, $Zoom: 1, $FlyDirection: 8, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleVertical: 0.6, $Opacity: 2 },
+
+            //ZM*JDN|LB
+            {$Duration: 1200, $Zoom: 11, $FlyDirection: 9, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseOutCubic, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.8, $ScaleVertical: 0.5, $Opacity: 2, $During: { $Top: [0, 0.5]} },
+            //ZM*JUP|LB
+            {$Duration: 1200, $Zoom: 11, $FlyDirection: 9, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseInCubic, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.8, $ScaleVertical: 0.5, $Opacity: 2, $During: { $Top: [0, 0.5]} },
+            //ZM*JUP|RB
+            {$Duration: 1200, $Zoom: 11, $FlyDirection: 10, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseInCubic, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.8, $ScaleVertical: 0.5, $Opacity: 2, $During: { $Top: [0, 0.5]} },
+
+            //ZM*WVR|LT
+            {$Duration: 1200, $Zoom: 11, $FlyDirection: 5, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseInWave }, $ScaleHorizontal: 0.5, $ScaleVertical: 0.3, $Opacity: 2, $Round: { $Rotate: 0.8} },
+            //ZM*WVR|RT
+            {$Duration: 1200, $Zoom: 11, $FlyDirection: 6, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseInWave }, $ScaleHorizontal: 0.5, $ScaleVertical: 0.3, $Opacity: 2, $Round: { $Rotate: 0.8} },
+            //ZM*WVR|TL
+            {$Duration: 1200, $Zoom: 11, $FlyDirection: 5, $Easing: { $Left: $JssorEasing$.$EaseInWave, $Top: $JssorEasing$.$EaseLinear }, $ScaleHorizontal: 0.3, $ScaleVertical: 0.5, $Opacity: 2, $Round: { $Rotate: 0.8} },
+            //ZM*WVR|BL
+            {$Duration: 1200, $Zoom: 11, $FlyDirection: 9, $Easing: { $Left: $JssorEasing$.$EaseInWave, $Top: $JssorEasing$.$EaseLinear }, $ScaleHorizontal: 0.3, $ScaleVertical: 0.5, $Opacity: 2, $Round: { $Rotate: 0.8} },
+
+            //RTT|10
+            {$Duration: 700, $Zoom: 11, $Rotate: 1, $Easing: { $Zoom: $JssorEasing$.$EaseInExpo, $Opacity: $JssorEasing$.$EaseLinear, $Rotate: $JssorEasing$.$EaseInExpo }, $Opacity: 2, $Round: { $Rotate: 0.8} },
+
+            //RTTL|R
+            {$Duration: 700, $Zoom: 11, $Rotate: 1, $FlyDirection: 2, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Zoom: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear, $Rotate: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.6, $Opacity: 2, $Round: { $Rotate: 0.8} },
+            //RTTL|B
+            {$Duration: 700, $Zoom: 11, $Rotate: 1, $FlyDirection: 8, $Easing: { $Top: $JssorEasing$.$EaseInCubic, $Zoom: $JssorEasing$.$EaseInCubic, $Opacity: $JssorEasing$.$EaseLinear, $Rotate: $JssorEasing$.$EaseInCubic }, $ScaleVertical: 0.6, $Opacity: 2, $Round: { $Rotate: 0.8} },
+
+            //RTTS|R
+            {$Duration: 700, $Zoom: 1, $Rotate: 1, $FlyDirection: 2, $Easing: { $Left: $JssorEasing$.$EaseInQuad, $Zoom: $JssorEasing$.$EaseInQuad, $Rotate: $JssorEasing$.$EaseInQuad, $Opacity: $JssorEasing$.$EaseOutQuad }, $ScaleHorizontal: 0.6, $Opacity: 2, $Round: { $Rotate: 1.2} },
+            //RTTS|B
+            {$Duration: 700, $Zoom: 1, $Rotate: 1, $FlyDirection: 8, $Easing: { $Top: $JssorEasing$.$EaseInQuad, $Zoom: $JssorEasing$.$EaseInQuad, $Rotate: $JssorEasing$.$EaseInQuad, $Opacity: $JssorEasing$.$EaseOutQuad }, $ScaleVertical: 0.6, $Opacity: 2, $Round: { $Rotate: 1.2} },
+
+            //RTT*JDN|RT
+            {$Duration: 1000, $Zoom: 11, $Rotate: .2, $FlyDirection: 6, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseOutCubic, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.8, $ScaleVertical: 0.5, $Opacity: 2, $During: { $Top: [0, 0.5]} },
+            //RTT*JDN|LB
+            {$Duration: 1000, $Zoom: 11, $Rotate: .2, $FlyDirection: 9, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseOutCubic, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.8, $ScaleVertical: 0.5, $Opacity: 2, $During: { $Top: [0, 0.5]} },
+            //RTT*JUP|RB
+            {$Duration: 1000, $Zoom: 11, $Rotate: .2, $FlyDirection: 10, $Easing: { $Left: $JssorEasing$.$EaseLinear, $Top: $JssorEasing$.$EaseInCubic, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.8, $ScaleVertical: 0.5, $Opacity: 2, $During: { $Top: [0, 0.5]} },
+            { $Duration: 1200, $Zoom: 11, $Rotate: true, $FlyDirection: 6, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Top: $JssorEasing$.$EaseLinear, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.5, $ScaleVertical: 0.8, $Opacity: 2, $During: { $Left: [0, 0.5] }, $Round: { $Rotate: 0.5} },
+            //RTT*JUP|BR
+            {$Duration: 1000, $Zoom: 11, $Rotate: .2, $FlyDirection: 10, $Easing: { $Left: $JssorEasing$.$EaseInCubic, $Top: $JssorEasing$.$EaseLinear, $Zoom: $JssorEasing$.$EaseInCubic }, $ScaleHorizontal: 0.5, $ScaleVertical: 0.8, $Opacity: 2, $During: { $Left: [0, 0.5]} },
+
+            //R|IB
+            {$Duration: 900, $FlyDirection: 2, $Easing: { $Left: $JssorEasing$.$EaseInOutBack }, $ScaleHorizontal: 0.6, $Opacity: 2 },
+            //B|IB
+            {$Duration: 900, $FlyDirection: 8, $Easing: { $Top: $JssorEasing$.$EaseInOutBack }, $ScaleVertical: 0.6, $Opacity: 2 },
+
+            ];
+			
+            var options = {
+                      $AutoPlay: true,                                    //[Optional] Whether to auto play, to enable slideshow, this option must be set to true, default value is false
+                $AutoPlaySteps: 1,                                  //[Optional] Steps to go for each navigation request (this options applys only when slideshow disabled), the default value is 1
+                $AutoPlayInterval: 4000,                            //[Optional] Interval (in milliseconds) to go for next slide since the previous stopped if the slider is auto playing, default value is 3000
+                $PauseOnHover: 1,                               //[Optional] Whether to pause when mouse over if a slider is auto playing, 0 no pause, 1 pause for desktop, 2 pause for touch device, 3 pause for desktop and touch device, default value is 1
+
+                $ArrowKeyNavigation: true,   			            //[Optional] Allows keyboard (arrow key) navigation or not, default value is false
+                $SlideDuration: 500,                                //[Optional] Specifies default duration (swipe) for slide in milliseconds, default value is 500
+                $MinDragOffsetToSlide: 20,                          //[Optional] Minimum drag offset to trigger slide , default value is 20
+                //$SlideWidth: 600,                                 //[Optional] Width of every slide in pixels, default value is width of 'slides' container
+                //$SlideHeight: 300,                                //[Optional] Height of every slide in pixels, default value is height of 'slides' container
+                $SlideSpacing: 0, 					                //[Optional] Space between each slide in pixels, default value is 0
+                $DisplayPieces: 1,                                  //[Optional] Number of pieces to display (the slideshow would be disabled if the value is set to greater than 1), the default value is 1
+                $ParkingPosition: 0,                                //[Optional] The offset position to park slide (this options applys only when slideshow disabled), default value is 0.
+                $UISearchMode: 1,                                   //[Optional] The way (0 parellel, 1 recursive, default value is 1) to search UI components (slides container, loading screen, navigator container, arrow navigator container, thumbnail navigator container etc).
+                $PlayOrientation: 1,                                //[Optional] Orientation to play slide (for auto play, navigation), 1 horizental, 2 vertical, 5 horizental reverse, 6 vertical reverse, default value is 1
+                $DragOrientation: 3,                                //[Optional] Orientation to drag slide, 0 no drag, 1 horizental, 2 vertical, 3 either, default value is 1 (Note that the $DragOrientation should be the same as $PlayOrientation when $DisplayPieces is greater than 1, or parking position is not 0)
+
+                $SlideshowOptions: {                                //[Optional] Options to specify and enable slideshow or not
+                    $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
+                    $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
+                    $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
+                    $ShowLink: true                                    //[Optional] Whether to bring slide link on top of the slider when slideshow is running, default value is false
+                },
+
+                $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
+                    $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
+                    $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
+                    $AutoCenter: 0,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
+                    $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
+                    $Lanes: 1,                                      //[Optional] Specify lanes to arrange items, default value is 1
+                    $SpacingX: 10,                                   //[Optional] Horizontal space between each item in pixel, default value is 0
+                    $SpacingY: 10,                                   //[Optional] Vertical space between each item in pixel, default value is 0
+                    $Orientation: 1                                 //[Optional] The orientation of the navigator, 1 horizontal, 2 vertical, default value is 1
+                },
+$CaptionSliderOptions: {                            //[Optional] Options which specifies how to animate caption
+                    $Class: $JssorCaptionSlider$,                   //[Required] Class to create instance to animate caption
+                    $CaptionTransitions: _CaptionTransitions,       //[Required] An array of caption transitions to play caption, see caption transition section at jssor slideshow transition builder
+                    $PlayInMode: 1,                                 //[Optional] 0 None (no play), 1 Chain (goes after main slide), 3 Chain Flatten (goes after main slide and flatten all caption animations), default value is 1
+                    $PlayOutMode: 3                                 //[Optional] 0 None (no play), 1 Chain (goes before main slide), 3 Chain Flatten (goes before main slide and flatten all caption animations), default value is 1
+                },
+                $ArrowNavigatorOptions: {
+                    $Class: $JssorArrowNavigator$,              //[Requried] Class to create arrow navigator instance
+                    $ChanceToShow: 2                                //[Required] 0 Never, 1 Mouse Over, 2 Always
+                }
+            };
+
+  var jssor_slider2 = new $JssorSlider$(containerId, options);
+
+            //responsive code begin
+            //you can remove responsive code if you don't want the slider scales while window resizes
+            function ScaleSlider() {
+            var parentWidth = $('#slider2_container').parent().width();
+            if (parentWidth) {
+                jssor_slider2.$SetScaleWidth(parentWidth);
+            }
+            else
+                window.setTimeout(ScaleSlider, 30);
+        }
+        //Scale slider after document ready
+        ScaleSlider();
+        if (!navigator.userAgent.match(/(iPhone|iPod|iPad|BlackBerry|IEMobile)/)) {
+            //Capture window resize event
+            $(window).bind('resize', ScaleSlider);
+        }
+
+		 }
+            //if (navigator.userAgent.match(/(iPhone|iPod|iPad)/)) {
+            //    $(window).bind("orientationchange", ScaleSlider);
+            //}
+            //responsive code end
+    </script>
+    <!-- Jssor Slider Begin -->
+    <!-- You can move inline styles to css file or css block. -->
+    
+         <div id="slider2_container" style="position: relative; margin: 0 auto; 
+        top: 0px; left: 0px; width: 400px; height: 200px; overflow: hidden; border:#2A3F55 solid 1px;"> 
+        <!-- Loading Screen -->
+       
+       
+        <!-- Slides Container -->
+        <div u="slides" style="cursor: move; position: relative; left: 0px; top: 0px; width: 400px;z-index:0;height: 200px; overflow: hidden;">
+       
+             <div>
+                 <img u="image" src="images/animals/cow.png" />
+                                
+            </div>
+            <div>
+                <img u="image" src="images/fish/tilapia.png"/></div>
+            <div>
+                <img u="image" src="images/birds/layers.png" />
+                </div>
+         
+                
+            
+                </div>
+        <!-- Bullet Navigator Skin Begin -->
+        <style>
+            /* jssor slider bullet navigator skin 21 css */
+            /*
+            .jssorb21 div           (normal)
+            .jssorb21 div:hover     (normal mouseover)
+            .jssorb21 .av           (active)
+            .jssorb21 .av:hover     (active mouseover)
+            .jssorb21 .dn           (mousedown)
+            */
+            .jssorb21 div, .jssorb21 div:hover, .jssorb21 .av
+            {
+                background: url(images/b21.png) no-repeat;
+                overflow:hidden;
+                cursor: pointer;
+            }
+            .jssorb21 div { background-position: -5px -5px; }
+            .jssorb21 div:hover, .jssorb21 .av:hover { background-position: -95px -5px; }
+            .jssorb21 .av { background-position: -65px -5px; }
+            .jssorb21 .dn, .jssorb21 .dn:hover { background-position: -95px -5px; }
+        </style>
+        <!-- bullet navigator container -->
+        <div u="navigator" class="jssorb21" style="position: absolute; bottom: 10px; left: 150px;">
+            <!-- bullet navigator item prototype -->
+            <div u="prototype" style="POSITION: absolute; WIDTH: 19px; HEIGHT: 19px; text-align:center; line-height:19px; color:White; font-size:12px;"></div>
+        </div>
+        <!-- Bullet Navigator Skin End -->
+
+        <!-- Arrow Navigator Skin Begin -->
+        <style>
+            /* jssor slider arrow navigator skin 21 css */
+            /*
+            .jssora21l              (normal)
+            .jssora21r              (normal)
+            .jssora21l:hover        (normal mouseover)
+            .jssora21r:hover        (normal mouseover)
+            .jssora21ldn            (mousedown)
+            .jssora21rdn            (mousedown)
+            */
+            /*.jssora21l, .jssora21r, .jssora21ldn, .jssora21rdn
+            {
+            	position: absolute;
+            	cursor: pointer;
+            	display: block;
+                background: url(images/a21.png) center center no-repeat;
+                overflow: hidden;
+            }
+            .jssora21l {  background-position: -3px -3px;  }
+            .jssora21r { background-position: -3px -3px; }
+            .jssora21l:hover { background-position: -200px -103px; }
+            .jssora21r:hover { background-position: -200px -53px; }
+            .jssora21ldn { background-position: -243px -33px; }
+            .jssora21rdn { background-position: -303px -33px; }
+			#slider2_container:hover .jssora21l { background-position: -3px -33px; }
+#slider2_container:hover .jssora21r {background-position: -205px -40px; }*/
+        </style>
+        <!-- Arrow Left -->
+        <span u="arrowleft" class="jssora21l" style="width: 15px; height: 15px; top: 100px; left: 15px;">
+        </span>
+        <!-- Arrow Right -->
+        <span u="arrowright" class="jssora21r" style="width: 15px; height: 15px; top: 95px; right: 15px;z-index:2;">
+        </span>
+        <!-- Arrow Navigator Skin End -->
+        <a style="display: none" href="http://www.jssor.com">javascript</a>
+                <script>
+            jssor_slider2_starter('slider2_container');
+        </script>
+</div>
+
+    <!-- Jssor Slider End -->
+<div class="button condensed-thin">
+<div data-role="controlgroup">
+<a href="#page1" data-role="button" class=" slab-400"> <img src="images/kuku.png"  align="left">Poultry</a>
+<a href="#page2" data-role="button" class=" slab-400"><img src="images/cow.png"  align="left">Livestock</a>
+<a href="#page3" data-role="button" class=" slab-400"><img src="images/fish.png"  align="left">Fish</a>
+</div>
+<div data-role="footer">
+				<h4>©2014 Mtamenature</h4>
+			</div>
+</div>	
+</div></div>
+
+<!--start of the pages-->
+<div data-role="page" id="page1">
+			<div data-role="header" data-add-back-btn="true"> 
+				<h1>Birds</h1> 
+			</div>
+                        <div data-role="content">
+                             <ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="b">
+				<li data-role="list-divider"> <h1 align="center" class="slab-regular">Overview</h1></li>
+				
+				<li><a href="#chickenA"> <img src="images/birds/chicken.png"  style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Chicken Kienyeji </h1><p>Sweet source of proteins.</p></a></li>
+				<li><a href="#broilerA"> <img src="images/birds/broilers.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Chicken Broilers </h1><p>Great for meat production.</p></a></li>
+				<li><a href="#layerA"> <img src="images/birds/layers.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Chicken Layers </h1><p>Great for eggs production</p></a></li>
+				<li><a href="#quailA"> <img src="images/birds/quail.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Quails </h1><p>Possess nutritional and medical value.</p></a></li>
+				<li><a href="#duckA"> <img src="images/birds/duck.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Ducks </h1><p>Nice meat and eggs, beautiful birds.</p></a></li>
+				<li><a href="#gooseA"> <img src="images/birds/goose.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Geese </h1><p>Nice meat and eggs, very beautiful.</p></a></li>
+				<li><a href="#guinneaA"> <img src="images/birds/guinnea_fowl.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Guinnea Fowls </h1><p>For meat and eggs, very sweet.</p></a></li>
+				<li><a href="#turkeyA"> <img src="images/birds/turkey.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Turkey </h1><p>Also know as bata mzinga, a lot of meat.</p></a></li>
+				<li><a href="#parrotA"> <img src="images/birds/parrot.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg">  Name : Parrots </h1><p>Chiriku, great pets and immitative birds.</p></a></li>
+				<li><a href="#doveA"> <img src="images/birds/dove.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Doves </h1><p>Very beautiful bird.</p></a></li>
+				
+				
+			     </ul>
+                        </div>
+               </div>
+               
+               <!--page2-->
+		<div data-role="page" id="page2" >
+			<div data-role="header" data-add-back-btn="true"> 
+				<h1>Animals</h1> 
+			</div>
+                        <div data-role="content">
+                          <ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="b">
+				<li data-role="list-divider"> <h1 align="center" class="slab-regular">Overview</h1></li>
+				
+				<li><a href="#cowA"> <img src="images/animals/cow.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg">  Name : Cattle </h1><p>For milk and production.</p></a></li>
+				<li><a href="#goatA"> <img src="images/animals/goat.png"  style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg">  Name : Goats </h1><p>Meat and milk production</p></a></li>
+				<li><a href="#sheepA"> <img src="images/animals/sheep.png"  style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Sheep </h1><p>Meat production.</p></a></li>
+				<li><a href="#rabbitA"> <img src="images/animals/rabbit.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Rabbits </h1><p>Tender meat production.</p></a></li>
+				<li><a href="#pigA"> <img src="images/animals/pig.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Pigs </h1><p>Nice meat production.</p></a></li>
+				<li><a href="#camelA"> <img src="images/animals/camel.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Name : Camel </h1><p>Labour and meat.</p></a></li>
+				
+			     </ul>
+				 
+                        </div>
+               </div>
+               
+               <!--page 3-->
+               
+               <div data-role="page" id="page3">
+			<div data-role="header" data-add-back-btn="true"> 
+				<h1>Fish</h1> 
+			</div>
+                        <div data-role="content">
+<ul data-role="listview" data-inset="true" data-theme="a" data-dividertheme="b">
+				<li data-role="list-divider"> <h1 align="center" class="slab-regular">Overview</h1></li>				
+				<li><a href="#catfishA"> <img src="images/fish/catfish.png"  style="width:100%; height:100%; border:solid #808080"><h1><img src="images/star.jpg"> Fish Name : Cat Fish </h1><p>looks like a cat!.</p></a></li>
+				<li><a href="#mudfishA"> <img src="images/fish/mudfish.png" style="width:100%; height:100%; border:solid #808080"><h1><img src="images/star.jpg"> Fish Name : Mud Fish </h1><p>Found mostly in the mad.</p></a></li>
+				<li><a href="#tilapiaA"> <img src="images/fish/tilapia.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg" > Fish Name : Tilapia </h1><p>Commonly eaten. Very sweet!</p></a></li>
+				<li><a href="#nilepearchA"> <img src="images/fish/nile_pearch.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Fish Name : Nile Pearch </h1><p>Tender meat and sweet.</p></a></li>
+				<li><a href="#goldfishA"> <img src="images/fish/gold_fish.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Fish Name : Gold Fish </h1><p>Tender meat and sweet.</p></a></li>
+				<li><a href="#koicarpA"> <img src="images/fish/koi_carp.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Fish Name : Koi Carp </h1><p>Tender meat and sweet.</p></a></li>
+				<li><a href="#troutA"> <img src="images/fish/trout.png" style="width:100%; height:100%; border:solid #808080"> <h1><img src="images/star.jpg"> Fish Name : Trout </h1><p>Tender meat and sweet.</p></a></li>
+				
+			     </ul>
+				 
+                        </div>
+               </div>
+			   <style type="text/css">
+			   </style>
+			    <!--pageChicken-->
+		<div data-role="page" id="chickenA" >
+			
+				<div data-role="header" data-add-back-btn="true">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left" ><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+</div>
+			
+			</div>
+			
+			 <!--pageLayer-->
+		<div data-role="page" id="layerA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+</div>
+			
+			</div>
+			
+			 <!--Broiler-->
+		<div data-role="page" id="broilerA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 			
+			 <!--Quail-->
+		<div data-role="page" id="quailA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--Duck-->
+		<div data-role="page" id="duckA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--Goose-->
+		<div data-role="page" id="gooseA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--Guinnea-->
+		<div data-role="page" id="guinneaA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--Turkey-->
+		<div data-role="page" id="turkeyA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--Parrot-->
+		<div data-role="page" id="parrotA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--Dove-->
+		<div data-role="page" id="doveA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+</div>
+			
+			</div>
+			
+			 <!--Cow-->
+		<div data-role="page" id="cowA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 		
+			 <!--Goat-->
+		<div data-role="page" id="goatA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--sheep-->
+		<div data-role="page" id="sheepA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--Rabbit-->
+		<div data-role="page" id="rabbitA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--Pig-->
+		<div data-role="page" id="pigA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			
+			
+			 <!--Camel-->
+		<div data-role="page" id="camelA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			
+			
+			 <!--Dog-->
+		<div data-role="page" id="dogA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+			 <!--Cat-->
+		<div data-role="page" id="catA" >
+			
+				<div data-role="header">
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%">
+
+</div>
+			
+			</div>
+			
+						
+			 <!--Cat fish-->
+		<div data-role="page" id="catfishA" >
+			
+				<div data-role="header">
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#catfishB" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<img src="images/fish/catfish.png">
+
+<h4>How to Start Fish Farming Business?</h4>
+<ul>
+<li>Select A Suitable Farm Land/Area. Coastal people are advantageous, though a land with plenty of natural resources in okay.</li>
+<li>Select relatively level land and avoid steeply sloped lands.</li>
+<li>Select a large piece of land, where you can perform all types of necessary farm activities.</li>
+<li>Avoid flooding and polluted areas, because flooding area can harm your business seriously.</li>
+<li>Don’t select fish farming land near the crop fields. Farmers usually use a lots of fertilizers and can affect your fish farm.</li>
+<li>It will be better if your selected land become slightly lower than the main water source. It also help to reduce the cost of filling your farm land with water.</li>
+<li>Ensure good transportation system is available in your selected area for marketing your products and purchasing necessary commodities from the market.</li>
+</ul>
+
+</div>
+			
+			</div>
+			
+			<!--Cat fish-->
+		<div data-role="page" id="catfishB" >
+			
+				<div data-role="header">
+<a href="#catfishA" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Get Started</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#catfishC" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Pond Design & Construction</h4>
+<ul>
+<li>Construct a suitable pond, after selecting your farm area.</li>
+<li>Before constructing, make a good design and make the pond according to your desired design. </li>
+<li>While designing the pond, ensure the availability of all types of necessary facilities for maintaining a profitable fish farming business. </li>
+<li>You can consult with your nearest fisheries institute to learn more about specific pond design for specific fish species. </li>
+<li>Always try to maintain a good environment in the pond. Good environment helps to live and grow the fish.</li>
+</ul>
+</div>
+			
+			</div>
+			
+			<!--Cat fish-->
+		<div data-role="page" id="catfishC" >
+			
+				<div data-role="header">
+<a href="#catfishB" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Feeding</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#catfishD" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Suplements</h4>
+<ul>
+<p>Feed during the day, and avoid feeding late in the evening. When feeding as a supplement to natural foods in the pond, two or three times a week will be ample. In ponds with more fish and fewer plants, daily feeding is in order during sunny days, or smaller amounts twice a day.</p>
+<li>Rice Bran-Rice dust contain about 10-14% of protein. Rice dust also contain vitamin B1, B2, B6 and small quantity of enzyme.</li>
+<li>Mustard Cake - Mustard cake has to be served to fish by mixing with other food. Fat may gather in the liver of fish for long time consuming of cake. As a result the fish may die. Mix maximum 40% of cake in the fish feed. But don’t use dry cake more than 20%. Mustard cake contains 30-32% protein. It also contains a high rate of fat.</li>
+<li>Wheat Chaff - Amount of protein in the wheat chaff is 10-15%.</li>
+<li>Maize- Maize contain protein, carbohydrate, fat, vitamin A and E.</li>
+<li>Cotton Seeds-It contain about 54% protein. It is a better ingredients for supplementary fish feed.</li>
+<li>Moss - They are of green colored. They are floaty water plants. These types of moss contain about 14-20% protein.</li>
+<li>Fish Powder- Fish powder or fishmeal are brown colored. It is easily digestible to fish. Fishmeal contain about 55-60% protein.</li>
+<li>Bone Powder - The color of bone powder is dim white. It is very necessary for building fish-bone. The ratio of calcium and magnesium in the bone dust is 2 : 1.</li>
+<li>Innards of Animal - Innards of animal is a very suitable and ideal feed. It contain 52% protein.</li>
+<li>Vitamin- Vitamin is a necessary ingredients of fish feed. It keeps the fish healthy and disease free.</li>
+
+</ul>
+</div>
+			
+			</div>
+			
+			<!--Cat fish-->
+		<div data-role="page" id="catfishD" >
+			
+				<div data-role="header">
+<a href="#catfishC" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Diseases</h1>
+<a href="dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#catfishE" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Fish diseases</h4>
+<h5>Ulcer disease of fish</h5>
+<p>The affected fish should be kept in 100 g of salt mixing with 10 litres of water, and then return them to the pond again. To prevent this disease and keep the fish healthy, 1 kg of lime and 1 kg of salt should be poured in the pond before the cold season come.</p>
+<h5>Stomach swelling</h5>
+<p>Due to water storage in the stomach the belly of the fish become big sized. The fish lost the balance of its body. Affected fish moves here and there and this is the main fish symptoms of disease. The fish meet death quickly.</p>
+<p>This disease generally happens for “Aromonads” bacteria.</p>
+<p>The water from the stomach should removed by a empty syringe. After that 25 mg of clorem fenicle injection should apply for every one kg of fish or 200 mg of clorem fenicle powder may mix with the food and feed the fish. 1 kg of lime can use according to the size of the pond.</p>
+
+</div>
+			
+			</div>
+			
+			<!--Cat fish-->
+		<div data-role="page" id="catfishE" >
+			
+				<div data-role="header">
+<a href="#catfishD" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Harvesting</h1>
+<a href="dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-right">
+Done</a>
+</div>
+<div data-role="content">
+<h4>Harvesting and Marketing</h4>
+<h5>Harvesting</h5>
+<p>After a certain period, the fish become suitable for harvesting. Although this time depends on the fish species. Start harvesting, when a major numbers of fish reach marketing age.</p>
+<p>You can use net for harvesting fish or by removing water from the pond. Try to harvest during morning or afternoon, when temperature is low. After harvesting, send the fish to the market as soon as possible.</p>
+<h5>Marketing</h5>
+<p>Marketing is the easiest step of fish farming business. There are numerous markets available where you can sell your products. And all types of fish have a huge demand in the market. </p>
+<p>After harvesting, you can easily sell the fish at any of your nearest local market. Even there are many companies available who export fish to the foreign countries. So don’t worry about marketing the products, just focus on the other steps.</p>
+
+</div>
+			
+			</div>
+			
+			
+			
+			 <!--Mud fish-->
+		<div data-role="page" id="mudfishA" >
+			
+				<div data-role="header">
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#mudfishB" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>How to Start Fish Farming Business?</h4>
+<ul>
+<li>Select A Suitable Farm Land/Area. Coastal people are advantageous, though a land with plenty of natural resources in okay.</li>
+<li>Select relatively level land and avoid steeply sloped lands.</li>
+<li>Select a large piece of land, where you can perform all types of necessary farm activities.</li>
+<li>Avoid flooding and polluted areas, because flooding area can harm your business seriously.</li>
+<li>Don’t select fish farming land near the crop fields. Farmers usually use a lots of fertilizers and can affect your fish farm.</li>
+<li>It will be better if your selected land become slightly lower than the main water source. It also help to reduce the cost of filling your farm land with water.</li>
+<li>Ensure good transportation system is available in your selected area for marketing your products and purchasing necessary commodities from the market.</li>
+</ul>
+
+</div>
+			
+			</div>
+			
+			<!--Mud fish-->
+		<div data-role="page" id="mudfishB" >
+			
+				<div data-role="header">
+<a href="#mudfishA" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Get Started</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#mudfishC" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Pond Design & Construction</h4>
+<ul>
+<li>Construct a suitable pond, after selecting your farm area.</li>
+<li>Before constructing, make a good design and make the pond according to your desired design. </li>
+<li>While designing the pond, ensure the availability of all types of necessary facilities for maintaining a profitable fish farming business. </li>
+<li>You can consult with your nearest fisheries institute to learn more about specific pond design for specific fish species. </li>
+<li>Always try to maintain a good environment in the pond. Good environment helps to live and grow the fish.</li>
+</ul>
+</div>
+			
+			</div>
+			
+			<!--Mud fish-->
+		<div data-role="page" id="mudfishC" >
+			
+				<div data-role="header">
+<a href="#mudfishB" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Feeding</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#mudfishD" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Suplements</h4>
+<ul>
+<p>Feed during the day, and avoid feeding late in the evening. When feeding as a supplement to natural foods in the pond, two or three times a week will be ample. In ponds with more fish and fewer plants, daily feeding is in order during sunny days, or smaller amounts twice a day.</p>
+<li>Rice Bran-Rice dust contain about 10-14% of protein. Rice dust also contain vitamin B1, B2, B6 and small quantity of enzyme.</li>
+<li>Mustard Cake - Mustard cake has to be served to fish by mixing with other food. Fat may gather in the liver of fish for long time consuming of cake. As a result the fish may die. Mix maximum 40% of cake in the fish feed. But don’t use dry cake more than 20%. Mustard cake contains 30-32% protein. It also contains a high rate of fat.</li>
+<li>Wheat Chaff - Amount of protein in the wheat chaff is 10-15%.</li>
+<li>Maize- Maize contain protein, carbohydrate, fat, vitamin A and E.</li>
+<li>Cotton Seeds-It contain about 54% protein. It is a better ingredients for supplementary fish feed.</li>
+<li>Moss - They are of green colored. They are floaty water plants. These types of moss contain about 14-20% protein.</li>
+<li>Fish Powder- Fish powder or fishmeal are brown colored. It is easily digestible to fish. Fishmeal contain about 55-60% protein.</li>
+<li>Bone Powder - The color of bone powder is dim white. It is very necessary for building fish-bone. The ratio of calcium and magnesium in the bone dust is 2 : 1.</li>
+<li>Innards of Animal - Innards of animal is a very suitable and ideal feed. It contain 52% protein.</li>
+<li>Vitamin- Vitamin is a necessary ingredients of fish feed. It keeps the fish healthy and disease free.</li>
+
+</ul>
+</div>
+			
+			</div>
+			
+			<!--Mud fish-->
+		<div data-role="page" id="mudfishD" >
+			
+				<div data-role="header">
+<a href="#mudfishC" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Diseases</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#mudfishE" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Fish diseases</h4>
+<h5>Ulcer disease of fish</h5>
+<p>The affected fish should be kept in 100 g of salt mixing with 10 litres of water, and then return them to the pond again. To prevent this disease and keep the fish healthy, 1 kg of lime and 1 kg of salt should be poured in the pond before the cold season come.</p>
+<h5>Stomach swelling</h5>
+<p>Due to water storage in the stomach the belly of the fish become big sized. The fish lost the balance of its body. Affected fish moves here and there and this is the main fish symptoms of disease. The fish meet death quickly.</p>
+<p>This disease generally happens for “Aromonads” bacteria.</p>
+<p>The water from the stomach should removed by a empty syringe. After that 25 mg of clorem fenicle injection should apply for every one kg of fish or 200 mg of clorem fenicle powder may mix with the food and feed the fish. 1 kg of lime can use according to the size of the pond.</p>
+
+</div>
+			
+			</div>
+			
+			<!--Mud fish-->
+		<div data-role="page" id="mudfishE" >
+			
+				<div data-role="header">
+<a href="#mudfishD" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Harvesting</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-right">
+Done</a>
+</div>
+<div data-role="content">
+<h4>Harvesting and Marketing</h4>
+<h5>Harvesting</h5>
+<p>After a certain period, the fish become suitable for harvesting. Although this time depends on the fish species. Start harvesting, when a major numbers of fish reach marketing age.</p>
+<p>You can use net for harvesting fish or by removing water from the pond. Try to harvest during morning or afternoon, when temperature is low. After harvesting, send the fish to the market as soon as possible.</p>
+<h5>Marketing</h5>
+<p>Marketing is the easiest step of fish farming business. There are numerous markets available where you can sell your products. And all types of fish have a huge demand in the market. </p>
+<p>After harvesting, you can easily sell the fish at any of your nearest local market. Even there are many companies available who export fish to the foreign countries. So don’t worry about marketing the products, just focus on the other steps.</p>
+
+</div>
+			
+			</div>
+			
+			
+			
+			
+			 <!--Tilapia-->
+				<div data-role="page" id="tilapiaA" >
+			
+				<div data-role="header">
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#tilapiaB" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>How to Start Fish Farming Business?</h4>
+<ul>
+<li>Select A Suitable Farm Land/Area. Coastal people are advantageous, though a land with plenty of natural resources in okay.</li>
+<li>Select relatively level land and avoid steeply sloped lands.</li>
+<li>Select a large piece of land, where you can perform all types of necessary farm activities.</li>
+<li>Avoid flooding and polluted areas, because flooding area can harm your business seriously.</li>
+<li>Don’t select fish farming land near the crop fields. Farmers usually use a lots of fertilizers and can affect your fish farm.</li>
+<li>It will be better if your selected land become slightly lower than the main water source. It also help to reduce the cost of filling your farm land with water.</li>
+<li>Ensure good transportation system is available in your selected area for marketing your products and purchasing necessary commodities from the market.</li>
+</ul>
+
+</div>
+			
+			</div>
+			
+			<!--Tilapia-->
+		<div data-role="page" id="tilapiaB" >
+			
+				<div data-role="header">
+<a href="#tilapiaA" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Get Started</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#tilapiaC" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Pond Design & Construction</h4>
+<ul>
+<li>Construct a suitable pond, after selecting your farm area.</li>
+<li>Before constructing, make a good design and make the pond according to your desired design. </li>
+<li>While designing the pond, ensure the availability of all types of necessary facilities for maintaining a profitable fish farming business. </li>
+<li>You can consult with your nearest fisheries institute to learn more about specific pond design for specific fish species. </li>
+<li>Always try to maintain a good environment in the pond. Good environment helps to live and grow the fish.</li>
+</ul>
+</div>
+			
+			</div>
+			
+			<!--Tilapia-->
+		<div data-role="page" id="tilapiaC" >
+			
+				<div data-role="header">
+<a href="#tilapiaB" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Feeding</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#tilapiaD" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Suplements</h4>
+<ul>
+<p>Feed during the day, and avoid feeding late in the evening. When feeding as a supplement to natural foods in the pond, two or three times a week will be ample. In ponds with more fish and fewer plants, daily feeding is in order during sunny days, or smaller amounts twice a day.</p>
+<li>Rice Bran-Rice dust contain about 10-14% of protein. Rice dust also contain vitamin B1, B2, B6 and small quantity of enzyme.</li>
+<li>Mustard Cake - Mustard cake has to be served to fish by mixing with other food. Fat may gather in the liver of fish for long time consuming of cake. As a result the fish may die. Mix maximum 40% of cake in the fish feed. But don’t use dry cake more than 20%. Mustard cake contains 30-32% protein. It also contains a high rate of fat.</li>
+<li>Wheat Chaff - Amount of protein in the wheat chaff is 10-15%.</li>
+<li>Maize- Maize contain protein, carbohydrate, fat, vitamin A and E.</li>
+<li>Cotton Seeds-It contain about 54% protein. It is a better ingredients for supplementary fish feed.</li>
+<li>Moss - They are of green colored. They are floaty water plants. These types of moss contain about 14-20% protein.</li>
+<li>Fish Powder- Fish powder or fishmeal are brown colored. It is easily digestible to fish. Fishmeal contain about 55-60% protein.</li>
+<li>Bone Powder - The color of bone powder is dim white. It is very necessary for building fish-bone. The ratio of calcium and magnesium in the bone dust is 2 : 1.</li>
+<li>Innards of Animal - Innards of animal is a very suitable and ideal feed. It contain 52% protein.</li>
+<li>Vitamin- Vitamin is a necessary ingredients of fish feed. It keeps the fish healthy and disease free.</li>
+
+</ul>
+</div>
+			
+			</div>
+			
+			<!--Tilapia-->
+		<div data-role="page" id="tilapiaD" >
+			
+				<div data-role="header">
+<a href="#tilapiaC" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Diseases</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#tilapiaE" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Fish diseases</h4>
+<h5>Ulcer disease of fish</h5>
+<p>The affected fish should be kept in 100 g of salt mixing with 10 litres of water, and then return them to the pond again. To prevent this disease and keep the fish healthy, 1 kg of lime and 1 kg of salt should be poured in the pond before the cold season come.</p>
+<h5>Stomach swelling</h5>
+<p>Due to water storage in the stomach the belly of the fish become big sized. The fish lost the balance of its body. Affected fish moves here and there and this is the main fish symptoms of disease. The fish meet death quickly.</p>
+<p>This disease generally happens for “Aromonads” bacteria.</p>
+<p>The water from the stomach should removed by a empty syringe. After that 25 mg of clorem fenicle injection should apply for every one kg of fish or 200 mg of clorem fenicle powder may mix with the food and feed the fish. 1 kg of lime can use according to the size of the pond.</p>
+
+</div>
+			
+			</div>
+			
+			<!--Tilapia-->
+		<div data-role="page" id="tilapiaE" >
+			
+				<div data-role="header">
+<a href="#tilapiaD" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Harvesting</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-right">
+Done</a>
+</div>
+<div data-role="content">
+<h4>Harvesting and Marketing</h4>
+<h5>Harvesting</h5>
+<p>After a certain period, the fish become suitable for harvesting. Although this time depends on the fish species. Start harvesting, when a major numbers of fish reach marketing age.</p>
+<p>You can use net for harvesting fish or by removing water from the pond. Try to harvest during morning or afternoon, when temperature is low. After harvesting, send the fish to the market as soon as possible.</p>
+<h5>Marketing</h5>
+<p>Marketing is the easiest step of fish farming business. There are numerous markets available where you can sell your products. And all types of fish have a huge demand in the market. </p>
+<p>After harvesting, you can easily sell the fish at any of your nearest local market. Even there are many companies available who export fish to the foreign countries. So don’t worry about marketing the products, just focus on the other steps.</p>
+
+</div>
+			
+			</div>
+			
+			
+			
+			
+			 <!--Nile pearch-->
+		
+		<div data-role="page" id="nilepearchA" >
+			
+				<div data-role="header">
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#nilepearchB" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>How to Start Fish Farming Business?</h4>
+<ul>
+<li>Select A Suitable Farm Land/Area. Coastal people are advantageous, though a land with plenty of natural resources in okay.</li>
+<li>Select relatively level land and avoid steeply sloped lands.</li>
+<li>Select a large piece of land, where you can perform all types of necessary farm activities.</li>
+<li>Avoid flooding and polluted areas, because flooding area can harm your business seriously.</li>
+<li>Don’t select fish farming land near the crop fields. Farmers usually use a lots of fertilizers and can affect your fish farm.</li>
+<li>It will be better if your selected land become slightly lower than the main water source. It also help to reduce the cost of filling your farm land with water.</li>
+<li>Ensure good transportation system is available in your selected area for marketing your products and purchasing necessary commodities from the market.</li>
+</ul>
+
+</div>
+			
+			</div>
+			
+			<!--nilepearch-->
+		<div data-role="page" id="nilepearchB" >
+			
+				<div data-role="header">
+<a href="#nilepearchA" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Get Started</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#nilepearchC" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Pond Design & Construction</h4>
+<ul>
+<li>Construct a suitable pond, after selecting your farm area.</li>
+<li>Before constructing, make a good design and make the pond according to your desired design. </li>
+<li>While designing the pond, ensure the availability of all types of necessary facilities for maintaining a profitable fish farming business. </li>
+<li>You can consult with your nearest fisheries institute to learn more about specific pond design for specific fish species. </li>
+<li>Always try to maintain a good environment in the pond. Good environment helps to live and grow the fish.</li>
+</ul>
+</div>
+			
+			</div>
+			
+			<!--nilepearch-->
+		<div data-role="page" id="nilepearchC" >
+			
+				<div data-role="header">
+<a href="#nilepearchB" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Feeding</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#nilepearchD" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Suplements</h4>
+<ul>
+<p>Feed during the day, and avoid feeding late in the evening. When feeding as a supplement to natural foods in the pond, two or three times a week will be ample. In ponds with more fish and fewer plants, daily feeding is in order during sunny days, or smaller amounts twice a day.</p>
+<li>Rice Bran-Rice dust contain about 10-14% of protein. Rice dust also contain vitamin B1, B2, B6 and small quantity of enzyme.</li>
+<li>Mustard Cake - Mustard cake has to be served to fish by mixing with other food. Fat may gather in the liver of fish for long time consuming of cake. As a result the fish may die. Mix maximum 40% of cake in the fish feed. But don’t use dry cake more than 20%. Mustard cake contains 30-32% protein. It also contains a high rate of fat.</li>
+<li>Wheat Chaff - Amount of protein in the wheat chaff is 10-15%.</li>
+<li>Maize- Maize contain protein, carbohydrate, fat, vitamin A and E.</li>
+<li>Cotton Seeds-It contain about 54% protein. It is a better ingredients for supplementary fish feed.</li>
+<li>Moss - They are of green colored. They are floaty water plants. These types of moss contain about 14-20% protein.</li>
+<li>Fish Powder- Fish powder or fishmeal are brown colored. It is easily digestible to fish. Fishmeal contain about 55-60% protein.</li>
+<li>Bone Powder - The color of bone powder is dim white. It is very necessary for building fish-bone. The ratio of calcium and magnesium in the bone dust is 2 : 1.</li>
+<li>Innards of Animal - Innards of animal is a very suitable and ideal feed. It contain 52% protein.</li>
+<li>Vitamin- Vitamin is a necessary ingredients of fish feed. It keeps the fish healthy and disease free.</li>
+
+</ul>
+</div>
+			
+			</div>
+			
+			<!--nilepearch-->
+		<div data-role="page" id="nilepearchD" >
+			
+				<div data-role="header">
+<a href="#nilepearchC" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Diseases</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#nilepearchE" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Fish diseases</h4>
+<h5>Ulcer disease of fish</h5>
+<p>The affected fish should be kept in 100 g of salt mixing with 10 litres of water, and then return them to the pond again. To prevent this disease and keep the fish healthy, 1 kg of lime and 1 kg of salt should be poured in the pond before the cold season come.</p>
+<h5>Stomach swelling</h5>
+<p>Due to water storage in the stomach the belly of the fish become big sized. The fish lost the balance of its body. Affected fish moves here and there and this is the main fish symptoms of disease. The fish meet death quickly.</p>
+<p>This disease generally happens for “Aromonads” bacteria.</p>
+<p>The water from the stomach should removed by a empty syringe. After that 25 mg of clorem fenicle injection should apply for every one kg of fish or 200 mg of clorem fenicle powder may mix with the food and feed the fish. 1 kg of lime can use according to the size of the pond.</p>
+
+</div>
+			
+			</div>
+			
+			<!--nilepearch-->
+		<div data-role="page" id="nilepearchE" >
+			
+				<div data-role="header">
+<a href="#nilepearchD" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Harvesting</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-right">
+Done</a>
+</div>
+<div data-role="content">
+<h4>Harvesting and Marketing</h4>
+<h5>Harvesting</h5>
+<p>After a certain period, the fish become suitable for harvesting. Although this time depends on the fish species. Start harvesting, when a major numbers of fish reach marketing age.</p>
+<p>You can use net for harvesting fish or by removing water from the pond. Try to harvest during morning or afternoon, when temperature is low. After harvesting, send the fish to the market as soon as possible.</p>
+<h5>Marketing</h5>
+<p>Marketing is the easiest step of fish farming business. There are numerous markets available where you can sell your products. And all types of fish have a huge demand in the market. </p>
+<p>After harvesting, you can easily sell the fish at any of your nearest local market. Even there are many companies available who export fish to the foreign countries. So don’t worry about marketing the products, just focus on the other steps.</p>
+
+</div>
+			
+			</div>
+			
+			
+			
+			
+			 <!--Gold Fish-->
+		
+		<div data-role="page" id="goldfishA" >
+			
+				<div data-role="header">
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#goldfishB" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>How to Start Fish Farming Business?</h4>
+<ul>
+<li>Select A Suitable Farm Land/Area. Coastal people are advantageous, though a land with plenty of natural resources in okay.</li>
+<li>Select relatively level land and avoid steeply sloped lands.</li>
+<li>Select a large piece of land, where you can perform all types of necessary farm activities.</li>
+<li>Avoid flooding and polluted areas, because flooding area can harm your business seriously.</li>
+<li>Don’t select fish farming land near the crop fields. Farmers usually use a lots of fertilizers and can affect your fish farm.</li>
+<li>It will be better if your selected land become slightly lower than the main water source. It also help to reduce the cost of filling your farm land with water.</li>
+<li>Ensure good transportation system is available in your selected area for marketing your products and purchasing necessary commodities from the market.</li>
+</ul>
+
+</div>
+			
+			</div>
+			
+			<!--goldfish-->
+		<div data-role="page" id="goldfishB" >
+			
+				<div data-role="header">
+<a href="#goldfishA" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Get Started</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#goldfishC" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Pond Design & Construction</h4>
+<ul>
+<li>Construct a suitable pond, after selecting your farm area.</li>
+<li>Before constructing, make a good design and make the pond according to your desired design. </li>
+<li>While designing the pond, ensure the availability of all types of necessary facilities for maintaining a profitable fish farming business. </li>
+<li>You can consult with your nearest fisheries institute to learn more about specific pond design for specific fish species. </li>
+<li>Always try to maintain a good environment in the pond. Good environment helps to live and grow the fish.</li>
+</ul>
+</div>
+			
+			</div>
+			
+			<!--goldfish-->
+		<div data-role="page" id="goldfish" >
+			
+				<div data-role="header">
+<a href="#goldfishB" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Feeding</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#goldfishD" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Suplements</h4>
+<ul>
+<p>Feed during the day, and avoid feeding late in the evening. When feeding as a supplement to natural foods in the pond, two or three times a week will be ample. In ponds with more fish and fewer plants, daily feeding is in order during sunny days, or smaller amounts twice a day.</p>
+<li>Rice Bran-Rice dust contain about 10-14% of protein. Rice dust also contain vitamin B1, B2, B6 and small quantity of enzyme.</li>
+<li>Mustard Cake - Mustard cake has to be served to fish by mixing with other food. Fat may gather in the liver of fish for long time consuming of cake. As a result the fish may die. Mix maximum 40% of cake in the fish feed. But don’t use dry cake more than 20%. Mustard cake contains 30-32% protein. It also contains a high rate of fat.</li>
+<li>Wheat Chaff - Amount of protein in the wheat chaff is 10-15%.</li>
+<li>Maize- Maize contain protein, carbohydrate, fat, vitamin A and E.</li>
+<li>Cotton Seeds-It contain about 54% protein. It is a better ingredients for supplementary fish feed.</li>
+<li>Moss - They are of green colored. They are floaty water plants. These types of moss contain about 14-20% protein.</li>
+<li>Fish Powder- Fish powder or fishmeal are brown colored. It is easily digestible to fish. Fishmeal contain about 55-60% protein.</li>
+<li>Bone Powder - The color of bone powder is dim white. It is very necessary for building fish-bone. The ratio of calcium and magnesium in the bone dust is 2 : 1.</li>
+<li>Innards of Animal - Innards of animal is a very suitable and ideal feed. It contain 52% protein.</li>
+<li>Vitamin- Vitamin is a necessary ingredients of fish feed. It keeps the fish healthy and disease free.</li>
+
+</ul>
+</div>
+			
+			</div>
+			
+			<!--goldfish-->
+		<div data-role="page" id="goldfishD" >
+			
+				<div data-role="header">
+<a href="#goldfishC" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Diseases</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#goldfishE" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Fish diseases</h4>
+<h5>Ulcer disease of fish</h5>
+<p>The affected fish should be kept in 100 g of salt mixing with 10 litres of water, and then return them to the pond again. To prevent this disease and keep the fish healthy, 1 kg of lime and 1 kg of salt should be poured in the pond before the cold season come.</p>
+<h5>Stomach swelling</h5>
+<p>Due to water storage in the stomach the belly of the fish become big sized. The fish lost the balance of its body. Affected fish moves here and there and this is the main fish symptoms of disease. The fish meet death quickly.</p>
+<p>This disease generally happens for “Aromonads” bacteria.</p>
+<p>The water from the stomach should removed by a empty syringe. After that 25 mg of clorem fenicle injection should apply for every one kg of fish or 200 mg of clorem fenicle powder may mix with the food and feed the fish. 1 kg of lime can use according to the size of the pond.</p>
+
+</div>
+			
+			</div>
+			
+			<!--goldfish-->
+		<div data-role="page" id="goldfishE" >
+			
+				<div data-role="header">
+<a href="#goldfishD" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Harvesting</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-right">
+Done</a>
+</div>
+<div data-role="content">
+<h4>Harvesting and Marketing</h4>
+<h5>Harvesting</h5>
+<p>After a certain period, the fish become suitable for harvesting. Although this time depends on the fish species. Start harvesting, when a major numbers of fish reach marketing age.</p>
+<p>You can use net for harvesting fish or by removing water from the pond. Try to harvest during morning or afternoon, when temperature is low. After harvesting, send the fish to the market as soon as possible.</p>
+<h5>Marketing</h5>
+<p>Marketing is the easiest step of fish farming business. There are numerous markets available where you can sell your products. And all types of fish have a huge demand in the market. </p>
+<p>After harvesting, you can easily sell the fish at any of your nearest local market. Even there are many companies available who export fish to the foreign countries. So don’t worry about marketing the products, just focus on the other steps.</p>
+
+</div>
+			
+			</div>
+			
+			
+			
+			
+			 <!--Koi carp-->
+		
+		<div data-role="page" id="koicarpA" >
+			
+				<div data-role="header">
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#koicarpB" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>How to Start Fish Farming Business?</h4>
+<ul>
+<li>Select A Suitable Farm Land/Area. Coastal people are advantageous, though a land with plenty of natural resources in okay.</li>
+<li>Select relatively level land and avoid steeply sloped lands.</li>
+<li>Select a large piece of land, where you can perform all types of necessary farm activities.</li>
+<li>Avoid flooding and polluted areas, because flooding area can harm your business seriously.</li>
+<li>Don’t select fish farming land near the crop fields. Farmers usually use a lots of fertilizers and can affect your fish farm.</li>
+<li>It will be better if your selected land become slightly lower than the main water source. It also help to reduce the cost of filling your farm land with water.</li>
+<li>Ensure good transportation system is available in your selected area for marketing your products and purchasing necessary commodities from the market.</li>
+</ul>
+
+</div>
+			
+			</div>
+			
+			<!--koicarp-->
+		<div data-role="page" id="koicarpB" >
+			
+				<div data-role="header">
+<a href="#koicarpA" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Get Started</h1>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#koicarpC" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Pond Design & Construction</h4>
+<ul>
+<li>Construct a suitable pond, after selecting your farm area.</li>
+<li>Before constructing, make a good design and make the pond according to your desired design. </li>
+<li>While designing the pond, ensure the availability of all types of necessary facilities for maintaining a profitable fish farming business. </li>
+<li>You can consult with your nearest fisheries institute to learn more about specific pond design for specific fish species. </li>
+<li>Always try to maintain a good environment in the pond. Good environment helps to live and grow the fish.</li>
+</ul>
+</div>
+			
+			</div>
+			
+			<!--koicarp-->
+		<div data-role="page" id="koicarpC" >
+			
+				<div data-role="header">
+<a href="#koicarpB" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#dashboard" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Feeding</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#koicarpD" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Suplements</h4>
+<ul>
+<p>Feed during the day, and avoid feeding late in the evening. When feeding as a supplement to natural foods in the pond, two or three times a week will be ample. In ponds with more fish and fewer plants, daily feeding is in order during sunny days, or smaller amounts twice a day.</p>
+<li>Rice Bran-Rice dust contain about 10-14% of protein. Rice dust also contain vitamin B1, B2, B6 and small quantity of enzyme.</li>
+<li>Mustard Cake - Mustard cake has to be served to fish by mixing with other food. Fat may gather in the liver of fish for long time consuming of cake. As a result the fish may die. Mix maximum 40% of cake in the fish feed. But don’t use dry cake more than 20%. Mustard cake contains 30-32% protein. It also contains a high rate of fat.</li>
+<li>Wheat Chaff - Amount of protein in the wheat chaff is 10-15%.</li>
+<li>Maize- Maize contain protein, carbohydrate, fat, vitamin A and E.</li>
+<li>Cotton Seeds-It contain about 54% protein. It is a better ingredients for supplementary fish feed.</li>
+<li>Moss - They are of green colored. They are floaty water plants. These types of moss contain about 14-20% protein.</li>
+<li>Fish Powder- Fish powder or fishmeal are brown colored. It is easily digestible to fish. Fishmeal contain about 55-60% protein.</li>
+<li>Bone Powder - The color of bone powder is dim white. It is very necessary for building fish-bone. The ratio of calcium and magnesium in the bone dust is 2 : 1.</li>
+<li>Innards of Animal - Innards of animal is a very suitable and ideal feed. It contain 52% protein.</li>
+<li>Vitamin- Vitamin is a necessary ingredients of fish feed. It keeps the fish healthy and disease free.</li>
+
+</ul>
+</div>
+			
+			</div>
+			
+			<!--koicarp-->
+		<div data-role="page" id="koicarpD" >
+			
+				<div data-role="header">
+<a href="#koicarpC" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Diseases</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#koicarpE" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Fish diseases</h4>
+<h5>Ulcer disease of fish</h5>
+<p>The affected fish should be kept in 100 g of salt mixing with 10 litres of water, and then return them to the pond again. To prevent this disease and keep the fish healthy, 1 kg of lime and 1 kg of salt should be poured in the pond before the cold season come.</p>
+<h5>Stomach swelling</h5>
+<p>Due to water storage in the stomach the belly of the fish become big sized. The fish lost the balance of its body. Affected fish moves here and there and this is the main fish symptoms of disease. The fish meet death quickly.</p>
+<p>This disease generally happens for “Aromonads” bacteria.</p>
+<p>The water from the stomach should removed by a empty syringe. After that 25 mg of clorem fenicle injection should apply for every one kg of fish or 200 mg of clorem fenicle powder may mix with the food and feed the fish. 1 kg of lime can use according to the size of the pond.</p>
+
+</div>
+			
+			</div>
+			
+			<!--koicarp-->
+		<div data-role="page" id="koicarpE" >
+			
+				<div data-role="header">
+<a href="#koicarpD" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Harvesting</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-right">
+Done</a>
+</div>
+<div data-role="content">
+<h4>Harvesting and Marketing</h4>
+<h5>Harvesting</h5>
+<p>After a certain period, the fish become suitable for harvesting. Although this time depends on the fish species. Start harvesting, when a major numbers of fish reach marketing age.</p>
+<p>You can use net for harvesting fish or by removing water from the pond. Try to harvest during morning or afternoon, when temperature is low. After harvesting, send the fish to the market as soon as possible.</p>
+<h5>Marketing</h5>
+<p>Marketing is the easiest step of fish farming business. There are numerous markets available where you can sell your products. And all types of fish have a huge demand in the market. </p>
+<p>After harvesting, you can easily sell the fish at any of your nearest local market. Even there are many companies available who export fish to the foreign countries. So don’t worry about marketing the products, just focus on the other steps.</p>
+
+</div>
+			
+			</div>
+			
+			
+			
+			
+		
+			
+			 <!--Trout-->
+		
+		<div data-role="page" id="troutA" >
+			
+				<div data-role="header">
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Requirements</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#troutB" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>How to Start Fish Farming Business?</h4>
+<ul>
+<li>Select A Suitable Farm Land/Area. Coastal people are advantageous, though a land with plenty of natural resources in okay.</li>
+<li>Select relatively level land and avoid steeply sloped lands.</li>
+<li>Select a large piece of land, where you can perform all types of necessary farm activities.</li>
+<li>Avoid flooding and polluted areas, because flooding area can harm your business seriously.</li>
+<li>Don’t select fish farming land near the crop fields. Farmers usually use a lots of fertilizers and can affect your fish farm.</li>
+<li>It will be better if your selected land become slightly lower than the main water source. It also help to reduce the cost of filling your farm land with water.</li>
+<li>Ensure good transportation system is available in your selected area for marketing your products and purchasing necessary commodities from the market.</li>
+</ul>
+
+</div>
+			
+			</div>
+			
+			<!--trout-->
+		<div data-role="page" id="troutB" >
+			
+				<div data-role="header">
+<a href="#troutA" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Get Started</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#troutC" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Pond Design & Construction</h4>
+<ul>
+<li>Construct a suitable pond, after selecting your farm area.</li>
+<li>Before constructing, make a good design and make the pond according to your desired design. </li>
+<li>While designing the pond, ensure the availability of all types of necessary facilities for maintaining a profitable fish farming business. </li>
+<li>You can consult with your nearest fisheries institute to learn more about specific pond design for specific fish species. </li>
+<li>Always try to maintain a good environment in the pond. Good environment helps to live and grow the fish.</li>
+</ul>
+</div>
+			
+			</div>
+			
+			<!--trout-->
+		<div data-role="page" id="troutC" >
+			
+				<div data-role="header">
+<a href="#troutB" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Feeding</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#troutD" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Suplements</h4>
+<ul>
+<p>Feed during the day, and avoid feeding late in the evening. When feeding as a supplement to natural foods in the pond, two or three times a week will be ample. In ponds with more fish and fewer plants, daily feeding is in order during sunny days, or smaller amounts twice a day.</p>
+<li>Rice Bran-Rice dust contain about 10-14% of protein. Rice dust also contain vitamin B1, B2, B6 and small quantity of enzyme.</li>
+<li>Mustard Cake - Mustard cake has to be served to fish by mixing with other food. Fat may gather in the liver of fish for long time consuming of cake. As a result the fish may die. Mix maximum 40% of cake in the fish feed. But don’t use dry cake more than 20%. Mustard cake contains 30-32% protein. It also contains a high rate of fat.</li>
+<li>Wheat Chaff - Amount of protein in the wheat chaff is 10-15%.</li>
+<li>Maize- Maize contain protein, carbohydrate, fat, vitamin A and E.</li>
+<li>Cotton Seeds-It contain about 54% protein. It is a better ingredients for supplementary fish feed.</li>
+<li>Moss - They are of green colored. They are floaty water plants. These types of moss contain about 14-20% protein.</li>
+<li>Fish Powder- Fish powder or fishmeal are brown colored. It is easily digestible to fish. Fishmeal contain about 55-60% protein.</li>
+<li>Bone Powder - The color of bone powder is dim white. It is very necessary for building fish-bone. The ratio of calcium and magnesium in the bone dust is 2 : 1.</li>
+<li>Innards of Animal - Innards of animal is a very suitable and ideal feed. It contain 52% protein.</li>
+<li>Vitamin- Vitamin is a necessary ingredients of fish feed. It keeps the fish healthy and disease free.</li>
+
+</ul>
+</div>
+			
+			</div>
+			
+			<!--trout-->
+		<div data-role="page" id="troutD" >
+			
+				<div data-role="header">
+<a href="#troutC" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Diseases</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#troutE" data-role="button" data-theme="c" 
+class="ui-btn-right">
+<img src="images/next.png"></a>
+</div>
+<div data-role="content">
+<h4>Fish diseases</h4>
+<h5>Ulcer disease of fish</h5>
+<p>The affected fish should be kept in 100 g of salt mixing with 10 litres of water, and then return them to the pond again. To prevent this disease and keep the fish healthy, 1 kg of lime and 1 kg of salt should be poured in the pond before the cold season come.</p>
+<h5>Stomach swelling</h5>
+<p>Due to water storage in the stomach the belly of the fish become big sized. The fish lost the balance of its body. Affected fish moves here and there and this is the main fish symptoms of disease. The fish meet death quickly.</p>
+<p>This disease generally happens for “Aromonads” bacteria.</p>
+<p>The water from the stomach should removed by a empty syringe. After that 25 mg of clorem fenicle injection should apply for every one kg of fish or 200 mg of clorem fenicle powder may mix with the food and feed the fish. 1 kg of lime can use according to the size of the pond.</p>
+
+</div>
+			
+			</div>
+			
+			<!--trout-->
+		<div data-role="page" id="troutE" >
+			
+				<div data-role="header">
+<a href="#troutD" data-role="button" data-theme="c" 
+class="ui-btn-left"><img src="images/prev.png"></a>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoleft">
+<img src="images/contact.png"></a>
+<h1>Harvesting</h1>
+<a href="#" data-role="button" data-theme="c" 
+class="ui-btn-nexttoright">
+<img src="images/chat.png"></a>
+<a href="#page3" data-role="button" data-theme="c" 
+class="ui-btn-right">
+Done</a>
+</div>
+<div data-role="content">
+<h4>Harvesting and Marketing</h4>
+<h5>Harvesting</h5>
+<p>After a certain period, the fish become suitable for harvesting. Although this time depends on the fish species. Start harvesting, when a major numbers of fish reach marketing age.</p>
+<p>You can use net for harvesting fish or by removing water from the pond. Try to harvest during morning or afternoon, when temperature is low. After harvesting, send the fish to the market as soon as possible.</p>
+<h5>Marketing</h5>
+<p>Marketing is the easiest step of fish farming business. There are numerous markets available where you can sell your products. And all types of fish have a huge demand in the market. </p>
+<p>After harvesting, you can easily sell the fish at any of your nearest local market. Even there are many companies available who export fish to the foreign countries. So don’t worry about marketing the products, just focus on the other steps.</p>
+
+</div>
+			
+			</div>
+			
+
+			<!--dashboard-->
+		<div data-role="page" id="dashboard" >
+			
+				<div data-role="header">
+                <h1>Dashboard</h1>
+</div>
+<div data-role="content">
+<div data-role="popup" id="popupLogin" data-theme="a" class="ui-corner-all" data-overlay-theme="b" data-dismissible="false">
+    <form id="loginForm">
+        <div style="padding:10px 20px;">
+            <h3>Please sign in</h3>
+            <label for="unm" class="ui-hidden-accessible">Username:</label>
+            <input name="user" id="unm" value="" placeholder="username" data-theme="a" type="text">
+            <label for="pwd" class="ui-hidden-accessible">Password:</label>
+            <input name="pass" id="pwd" value="" placeholder="password" data-theme="a" type="password">
+            <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign in</button>
+        </div>
+    </form>
+    <p>Dont have an Account?<a href="#signup"  data-theme="c" data-role="button"> Sign in</a> </p>
+</div>	
+<div id="headfirst"></div>
+    <ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+				<li data-role="list-divider">Sellect a Category</li>
+				
+				<li ><a href="#forum" ><b class="icon-comment slab-300"> Farmers' Forum </b><p class="slab-light">Post a Question or Issue to get Advice</p></a></li>
+				<li ><a href="#market"><b  class="icon-money"> Farmers' Market </b><p>Find/Create a Market for Produce</p></a></li>
+				<li  ><a href="#tips"><b class="icon-check"> Tips </b><p>View/Post Farming tips and Success stories</p></a></li>
+								
+			     </ul>
+
+</div>
+
+			
+			</div>
+			
+			<!--forum-->
+		<div data-role="page" id="forum" >
+			
+				<div data-role="header">
+                <h1>M-fugo: Forum</h1>
+</div>
+<div data-role="content" >
+<div id="forum-content">
+<ul data-role="listview" id="forumlists"></ul></div>
+<div data-role="popup" id="popupAdd" data-theme="a" class="ui-corner-all" data-overlay-theme="b" >
+    <form id="addForm">
+        <div style="padding:10px 20px;">
+            <h3>Add the Question Here:</h3>
+            <label for="qn-t" class="ui-hidden-accessible">Topic:</label>
+            <input name="quest-t" id="qn-t" value="" placeholder="topic" data-theme="a" type="text">
+            <label for="qn-c" class="ui-hidden-accessible">Content:</label>
+            <input name="qn-c" id="qn-c" value="" placeholder="question content" data-theme="a" type="text">
+            <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Post</button>
+        </div>
+    </form>
+    </div>	
+
+</div>
+ <div data-role="footer" align="center">
+<a href="#popupAdd" data-role="button" data-rel="popup" data-transition="pop" class="icon-plus-sign condensed-regular">&nbsp;Add A Question</a></div>			
+			</div>
+						<!--tips-->	`
+		<div data-role="page" id="tips" >
+			
+				<div data-role="header">
+                <h1>M-fugo: Tips</h1>
+</div>
+<div data-role="content">
+<div id="tips-content"></div>
+</div>
+			
+			</div>
+
+
+						<!--market-->
+		<div data-role="page" id="market" >
+			
+				<div data-role="header">
+               <h1> M-fugo: Market</h1>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%;">
+<div id="market-content"></div>
+</div>
+			
+			</div>
+
+
+
+						<!--tips-->
+		<div data-role="page" id="tips" >
+			
+				<div data-role="header">
+                <h1>M-fugo: Questions & Issues</h1>
+</div>
+<div data-role="content">
+<img src="images/images.gif" style="width:100%; height:100%;">
+</div>
+			
+			</div>
+
+				<!--answers-->
+		<div data-role="page" id="answers" >
+			
+				<div data-role="header">
+                <h1>M-fugo: Comments</h1>
+</div>
+<div data-role="content" id="answers-content">
+<div id="comment-content"></div>
+<div data-role="popup" id="popupComment" data-theme="a" class="ui-corner-all" data-overlay-theme="b" >
+    <form id="commentForm">
+        <div style="padding:10px 20px;">
+            <h3>Add Comment Here:</h3>
+            
+            <label for="ans" class="ui-hidden-accessible">Add Comment:</label>
+            <input name="ans" id="ans" value="" placeholder="add comment" data-theme="a" type="text">
+            <button type="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Comment</button>
+        </div>
+    </form>
+    </div>	
+</div>
+			
+<div data-role="footer" align="center">
+<a href="#popupComment" data-role="button" data-rel="popup" data-transition="pop" class="icon-plus-sign condensed-regular">&nbsp;Add A Comment</a></div>			
+			</div>
+						<!--tips-->
+		<div data-role="page" id="signup" >
+			
+				<div data-role="header">
+                <h1>M-fugo: Sign Up!</h1>
+                <form id="myform">
+        <div style="padding:10px 20px;">
+            <h3>Please sign up</h3>
+            <label for="un" class="ui-hidden-accessible">Username:</label>
+            <input name="user" id="un" value="" placeholder="username" data-theme="a" type="text">
+            <label for="pw" class="ui-hidden-accessible">Password:</label>
+            <input name="pass" id="pw" value="" placeholder="password" data-theme="a" type="password">
+            <label for="pw2" class="ui-hidden-accessible">Password:</label>
+            <input name="pass2" id="pw2" value="" placeholder="repeat password" data-theme="a" type="password">
+            <button type="submit" id="submit" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Sign Up!</button>
+        </div>
+    </form>
+</div>
+<div data-role="content">
+
+</div>
+			
+			</div>
+
+
+<script type="application/javascript">
+Parse.initialize("wu9dEYUmwVTZD4b1a6OD3MYDob6ecFjZYHhEWMiY",  "H9jVlEUNRN6p79J37ikCuBOppmzmaHMWhCdgPl3w"); 
+$(document).on("pagebeforeshow","#dashboard",function(){ // When entering pagetwo
+  //alert("pagetwo is about to be shown");
+  var currentUser = Parse.User.current();
+if (currentUser) {
+    // do stuff with the user
+	$("#headfirst").html('');
+	$("#headfirst").append("<h1>Welcome " + currentUser.get('username') +"!</h1>")
+} else {
+    // show the signup or login page
+	
+$( "#popupLogin" ).popup( "open" );
+}
+});
+$( "#myform" ).submit(function(evt) {
+var un = document.getElementById("un" ).value;
+var pw = document.getElementById("pw" ).value; 
+	var pw2 = document.getElementById("pw2" ).value;
+	evt.preventDefault();
+
+$.mobile.loading( 'show', {
+	text: 'Logging you in',
+	textVisible: true,
+	theme: 'b',
+	html: ""
+});
+if(pw==pw2){
+	
+			$.mobile.loading( 'hide');
+			$.mobile.loading( 'show', {
+	text: 'Signing you up...',
+	textVisible: true,
+	theme: 'b',
+	html: ""
+});
+
+		var user = new Parse.User();
+user.set("username", un);
+user.set("password", pw);
+
+user.signUp(null, {
+  success: function(user) {
+	  $.mobile.loading( 'hide');
+$.mobile.pageContainer.pagecontainer("change", "#dashboard", {
+            transition: "flip"
+        });  },
+  error: function(user, error) {
+    // Show the error message somewhere and let the user try again.
+    alert("Error: " + error.code + " " + error.message);
+  }
+});
+	
+	}else{
+			$.mobile.loading( 'hide');
+
+	alert("Error Passwords dont match!");	}
+});
+//login------------------------------------------------------
+$( "#myform" ).submit(function(evt) {
+var un = document.getElementById("unm" ).value;
+var pw = document.getElementById("pwd" ).value; 
+	evt.preventDefault();
+
+$.mobile.loading( 'show', {
+	text: 'Logging you in',
+	textVisible: true,
+	theme: 'b',
+	html: ""
+});
+Parse.User.logIn(un, pw, {
+  success: function(user) {
+    // Do stuff after successful login.
+	$.mobile.loading( 'hide');
+	$( "#popupLogin" ).popup( "close" );
+
+  },
+  error: function(user, error) {
+    // The login failed. Check error to see why.
+	$.mobile.loading( 'hide');
+$( "#popupLogin" ).popup( "open" );
+	alert("Login Error!");
+  }
+});
+});
+
+//code to load forum
+$(document).on("pagebeforeshow","#forum",function(){ // When entering pagetwo
+loadForum();});
+<!--forum--> 
+var forumid =[];
+
+function loadForum(){
+var Forum = Parse.Object.extend("Forum");
+var query = new Parse.Query(Forum);
+
+$.mobile.loading( 'show', {
+	text: 'Loading data...',
+	textVisible: true,
+	theme: 'b',
+	html: ""
+});
+query.find({
+  success: function(results) {
+    alert("Successfully retrieved " + results.length + " content.");
+    // Do something with the returned Parse.Object values
+	$.mobile.loading( 'hide');
+	if(results.length > 0){
+	  	$("#forumlists").html('');
+	
+    for (var i = 0; i < results.length; i++) {
+      var object = results[i];
+	  forumid.push(object.id);
+//$("profileImg")[0].src = profilePhoto.url();
+      //alert(object.id + ' - ' + object.get('author'));
+	  $('#forumlists').append('<li><a href=""><img src="images/images.gif" style="width:100%; height:100%;"><b>Topic :</b>'+ object.get('topic') +'<br><b>Asked by:</b>'+object.get('author')+'<br>'+ object.createdAt+' </a></li>');
+	  $('#forumlists').listview().listview('refresh');
+    }
+			}
+			else{
+				
+				$("#forumlists").html('');
+				$("#forum-content").append('<b>Opps!No Data Has Been Loaded</b>');
+				$("#forum-content").trigger('refresh');
+				}
+				},
+  error: function(error) {
+	  $.mobile.loading( 'hide');
+    alert("Error: " + error.code + " " + error.message);
+  }
+  
+});
+}
+var myid =0;
+$("#forumlists").on('click', 'li', function() { console.log('click') ;
+
+	 myid = $(this).parent('li').index()+1;
+	 //alert(forumid[myid]);
+$.mobile.pageContainer.pagecontainer("change", "#answers", {
+            transition: "flip"
+        });
+		 
+var Forum = Parse.Object.extend("Forum");
+var post = new Forum();
+var query = new Parse.Query(Forum);
+query.get(forumid[myid], {
+  success: function(myforum) {
+    // The object was retrieved successfully
+  },
+  error: function(object, error) {
+    // The object was not retrieved successfully.
+    // error is a Parse.Error with an error code and message.
+  }
+});
+var Comment = Parse.Object.extend("Comment");
+var query = new Parse.Query(Comment);
+var Forum = Parse.Object.extend("Forum");
+
+var post = new Forum();
+post.id = forumid[myid];
+query.equalTo("post", post);
+query.find({
+  success: function(comments) {
+	$.mobile.loading( 'hide');
+	if(comments.length > 0){
+	  	$("#comment-content").html('');
+	$("#comment-content").append('<ul data-role="listview" id="commentlist"></ul>');
+	
+    for (var i = 0; i < comments.length; i++) {
+      var object = comments[i];
+//$("profileImg")[0].src = profilePhoto.url();
+      //alert(object.id + ' - ' + object.get('author'));
+	  $('#commentlist').append('<li><a href=""><img src="images/images.png" style="width:100%; height:100%;">'+object.get('author')+' says:<br>'+ object.get('comment') +'<br>'+ object.createdAt+' </a></li>');
+    }
+			$('#commentlist').listview().listview('refresh');}
+			else{
+				
+				$("#comment-content").html('');
+				$("#comment-content").append('<b>Opps!No Data Has Been Loaded</b>');
+				$("#comment-content").trigger('refresh');
+				}
+				},
+  error: function(error) {
+	  $.mobile.loading( 'hide');
+    alert("Error: " + error.code + " " + error.message);
+  
+    }
+});
+	});
+
+$( "#commentForm" ).submit(function(evt) {
+var ans = document.getElementById("ans" ).value; 
+	evt.preventDefault();
+  var currentUser = Parse.User.current();
+
+$.mobile.loading( 'show', {
+	text: 'Posting your comment...',
+	textVisible: true,
+	theme: 'b',
+	html: ""
+});
+var Forum = Parse.Object.extend("Forum");
+
+var Comment = Parse.Object.extend("Comment");
+var comment = new Comment();
+var post = new Forum();
+post.id = forumid[myid];
+ 
+comment.set("comment",ans);
+comment.set("author", currentUser.get('username'));
+ comment.set("post", post);
+comment.save(null, {
+  success: function(comment) {
+	  $.mobile.loading( 'hide');
+    // Execute any logic that should take place after the object is saved.
+    //alert('New object created with objectId: ' + comment.id);
+	$( "#popupComment" ).popup( "close" );
+$.mobile.pageContainer.pagecontainer("change", "#answers", {
+            transition: "flip"
+        }); 
+  },
+  error: function(comment, error) {
+	  $.mobile.loading( 'hide');
+    // Execute any logic that should take place if the save fails.
+    // error is a Parse.Error with an error code and message.
+    alert('Failed to create new object, with error code: ' + error.message);
+  }
+});});	
+
+$( "#addForm" ).submit(function(evt) {
+var qnt = document.getElementById("qn-t" ).value;
+var qnc = document.getElementById("qn-c" ).value; 
+	evt.preventDefault();
+  var currentUser = Parse.User.current();
+
+$.mobile.loading( 'show', {
+	text: 'Posting your comment...',
+	textVisible: true,
+	theme: 'b',
+	html: ""
+});
+
+var Forum = Parse.Object.extend("Forum");
+var forum = new Forum();
+ 
+forum.set("topic",qnt);
+forum.set("content", qnc);
+forum.set("author", currentUser.get('username'));
+ 
+forum.save(null, {
+  success: function(forum) {
+	  $.mobile.loading( 'hide');
+    // Execute any logic that should take place after the object is saved.
+    //alert('New object created with objectId: ' + forum.id);
+	$( "#popupAdd" ).popup( "close" );
+$.mobile.pageContainer.pagecontainer("change", "#forum", {
+            transition: "flip"
+        }); 
+  },
+  error: function(forum, error) {
+	  $.mobile.loading( 'hide');
+    // Execute any logic that should take place if the save fails.
+    // error is a Parse.Error with an error code and message.
+    alert('Failed to create new object, with error code: ' + error.message);
+  }
+});
+});
+</script>
+			 			
+<style type="text/css">
+#forum-content .ui-content
+ {  background:url(images/failed.png);  background-repeat:no-repeat;
+    background-position:center center;
+    background-size:cover; }
+</style>
+</body>
+</html>
